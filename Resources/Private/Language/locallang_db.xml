@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'blogger'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_blogger_domain_model_post">Post</label>
+			<label index="tx_blogger_domain_model_post.title">Title</label>
+			<label index="tx_blogger_domain_model_post.publish_date">Publish Date</label>
+			<label index="tx_blogger_domain_model_post.author">Author</label>
+			<label index="tx_blogger_domain_model_post.category">Category</label>
+			<label index="tx_blogger_domain_model_post.content">Content</label>
+			<label index="tx_blogger_domain_model_category">Category</label>
+			<label index="tx_blogger_domain_model_category.title">Title</label>
+			<label index="tx_blogger_domain_model_category.parent">Parent</label>
+			<label index="tx_blogger_domain_model_content">Content</label>
+			<label index="tx_blogger_domain_model_content.header">Header</label>
+			<label index="tx_blogger_domain_model_author">Author</label>
+		</languageKey>
+	</data>
+</T3locallang>

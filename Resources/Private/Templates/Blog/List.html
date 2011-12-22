@@ -1,0 +1,15 @@
+<div class="blog list">
+	<f:for each="{posts}" as="post">
+		<h1><f:link.action action="detail" arguments="{post: post}">{post.title}</f:link.action></h1>
+		<p class="meta">
+			<span class="author">{post.author.realName}</span>
+			<span class="date"><f:format.date>{post.publishDate}</f:format.date></span>
+		</p>
+
+		<f:for each="{post.contentPreview}" as="c">
+			<f:cObject typoscriptObjectPath="plugin.tx_blogger.contentRenderer" data="{c.uid}" />
+		</f:for>
+
+		<f:link.action action="detail" arguments="{post: post}">mehr</f:link.action>
+	</f:for>
+</div>

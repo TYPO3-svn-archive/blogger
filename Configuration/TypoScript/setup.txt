@@ -1,0 +1,38 @@
+plugin.tx_blogger {
+	
+	features {
+		skipDefaultArguments = 1
+	}
+
+	view {
+		templateRootPath = {$plugin.tx_blogger.view.templateRootPath}
+		partialRootPath = {$plugin.tx_blogger.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_blogger.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_blogger.persistence.storagePid}
+
+		classes {
+			Tx_Blogger_Domain_Model_Author {
+				mapping {
+					tableName = be_users
+					columns.realName.mapOnProperty = realName
+				}
+			}
+			Tx_Blogger_Domain_Model_Content {
+				mapping {
+					tableName = tt_content
+					columns.CType.mapOnProperty = type
+					columns.header.mapOnProperty = header
+				}
+			}
+		}
+	}
+
+	contentRenderer = RECORDS
+	contentRenderer {
+		tables = tt_content
+		source.current = 1
+		dontCheckPid = 1
+	}
+}

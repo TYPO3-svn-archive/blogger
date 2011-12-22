@@ -1,0 +1,14 @@
+plugin.tx_blogger {
+	view {
+		# cat=plugin.tx_blogger/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:blogger/Resources/Private/Templates/
+		# cat=plugin.tx_blogger/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:blogger/Resources/Private/Partials/
+		# cat=plugin.tx_blogger/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:blogger/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_blogger//a; type=int+; label=Default storage PID
+		storagePid = 
+	}
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for the Blog extension in the FRONTEND</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_blogger_domain_model_post">Post</label>
+			<label index="tx_blogger_domain_model_post.title">title</label>
+			<label index="tx_blogger_domain_model_post.publish_date">publishDate</label>
+			<label index="tx_blogger_domain_model_post.author">author</label>
+			<label index="tx_blogger_domain_model_post.category">category</label>
+			<label index="tx_blogger_domain_model_post.content">content</label>
+			<label index="tx_blogger_domain_model_category">Category</label>
+			<label index="tx_blogger_domain_model_category.title">title</label>
+			<label index="tx_blogger_domain_model_category.parent">parent</label>
+			<label index="tx_blogger_domain_model_content">Content</label>
+			<label index="tx_blogger_domain_model_content.header">header</label>
+			<label index="tx_blogger_domain_model_author">Author</label>
+		</languageKey>
+	</data>
+</T3locallang>
