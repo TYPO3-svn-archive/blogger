@@ -108,14 +108,17 @@ $TCA['tx_blogger_domain_model_category'] = array(
 			'label' => 'LLL:EXT:blogger/Resources/Private/Language/locallang_db.xml:tx_blogger_domain_model_category.parent',
 			'config' => array(
 				'type' => 'select',
+				'renderMode' => 'tree',
 				'foreign_table' => 'tx_blogger_domain_model_category',
 				'foreign_table_where' => ' AND tx_blogger_domain_model_category.pid = ###CURRENT_PID###',
-				'minitems' => 0,
+				'treeConfig' => array(
+					'parentField' => 'parent',
+					'appearance' => array(
+						'expandAll' => TRUE,
+						'showHeader' => TRUE,
+					),
+				),
 				'maxitems' => 1,
-				'size' => 5,
-				'treeView' => 1,
-				'form_type' => 'user',
-				'userFunc' => 'Tx_Blogger_UserFunction_TreeView->displayCatTree',
 			),
 		),
 	),
