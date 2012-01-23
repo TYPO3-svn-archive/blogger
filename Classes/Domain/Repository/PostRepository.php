@@ -33,7 +33,36 @@ class Tx_Blogger_Domain_Repository_PostRepository extends Tx_Blogger_Domain_Repo
 	 */
 	public function findAll() {
 		$query = $this->createQuery();
-		$query->setOrderings(array('publish_date' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING));
+		$query->setOrderings(array('sticky' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING, 'publish_date' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING));
+		return $query->execute();
+	}
+
+	/**
+	 * 
+	 * 
+	 * @param Tx_Blogger_Domain_Model_Category $category
+	 * @param Tx_Blogger_Domain_Model_Author $author
+	 */
+	public function filter(Tx_Blogger_Domain_Model_Category $category, Tx_Blogger_Domain_Model_Author $author) {
+		$query = $this->createQuery();
+		$matchings = array();
+		if ($category != NULL) {
+			$matchings[] = $query->contains('category', $category);
+		}
+		if ($author != NULL) {
+			$matchings[] = $query->equals('author', $author);
+		}
+		if (count($matchings) > 0) {
+			$query->matching($matchings);
+		}
+		$query->setOrderings(array('sticky' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING, 'publish_date' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING));
+
+		return $query->execute();
+	}
+
+	public function findByCategory(Tx_Blogger_Domain_Model_Category $category) {
+		$query = $this->createQuery();
+		$query->matching($query->contains('category', $category));
 		return $query->execute();
 	}
 

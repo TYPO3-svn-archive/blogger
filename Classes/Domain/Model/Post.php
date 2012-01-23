@@ -58,7 +58,7 @@ class Tx_Blogger_Domain_Model_Post extends Tx_Blogger_Domain_Model_AbstractModel
 	/**
 	 * category
 	 *
-	 * @var Tx_Blogger_Domain_Model_Category
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Blogger_Domain_Model_Category>
 	 */
 	protected $category;
 
@@ -69,6 +69,21 @@ class Tx_Blogger_Domain_Model_Post extends Tx_Blogger_Domain_Model_AbstractModel
 	 */
 	protected $content;
 
+	/**
+	 * sticky
+	 * 
+	 * @var integer
+	 */
+	protected $sticky;
+	
+	/**
+	 * relatedPosts
+	 * 
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Blogger_Domain_Model_Post>
+	 * @lazy
+	 */
+	protected $relatedPosts;
+	
 	/**
 	 * __construct
 	 *
@@ -91,6 +106,8 @@ class Tx_Blogger_Domain_Model_Post extends Tx_Blogger_Domain_Model_AbstractModel
 		 * You may modify the constructor of this class instead
 		 */
 		$this->content = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->relatedPosts = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->category = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 
 	/**
@@ -153,7 +170,7 @@ class Tx_Blogger_Domain_Model_Post extends Tx_Blogger_Domain_Model_AbstractModel
 	/**
 	 * Returns the category
 	 *
-	 * @return Tx_Blogger_Domain_Model_Category $category
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Blogger_Domain_Model_Category> $category
 	 */
 	public function getCategory() {
 		return $this->category;
@@ -162,7 +179,7 @@ class Tx_Blogger_Domain_Model_Post extends Tx_Blogger_Domain_Model_AbstractModel
 	/**
 	 * Sets the category
 	 *
-	 * @param Tx_Blogger_Domain_Model_Category $category
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Blogger_Domain_Model_Category> $category
 	 * @return void
 	 */
 	public function setCategory(Tx_Blogger_Domain_Model_Category $category) {
@@ -208,6 +225,44 @@ class Tx_Blogger_Domain_Model_Post extends Tx_Blogger_Domain_Model_AbstractModel
 		$this->content = $content;
 	}
 
+	/**
+	 * Returns the sticky bit
+	 * 
+	 * @return integer $sticky
+	 */
+	public function getSticky() {
+		return $this->sticky;
+	}
+	
+	/**
+	 * Sets the sticky bit
+	 * 
+	 * @param integer $sticky
+	 * @return void
+	 */
+	public function setSticky($sticky) {
+		$this->sticky = $sticky;
+	}
+
+	/**
+	 * Returns the related posts
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Blogger_Domain_Model_Post> $relatedPosts
+	 */
+	public function getRelatedPosts() {
+		return $this->relatedPosts;
+	}
+
+	/**
+	 * Sets the related posts
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Blogger_Domain_Model_Post> $relatedPosts
+	 * @return void
+	 */
+	public function setRelatedPosts(Tx_Extbase_Persistence_ObjectStorage $relatedPosts) {
+		$this->relatedPosts = $relatedPosts;
+	}
+	
 	/**
 	 * Returns the content
 	 *

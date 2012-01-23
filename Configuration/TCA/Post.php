@@ -1,6 +1,7 @@
 <?php
-if (!defined ('TYPO3_MODE')) {
-	die ('Access denied.');
+
+if (!defined('TYPO3_MODE')) {
+	die('Access denied.');
 }
 
 $TCA['tx_blogger_domain_model_post'] = array(
@@ -9,10 +10,10 @@ $TCA['tx_blogger_domain_model_post'] = array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, publish_date, author, category, content',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'title, publish_date, author, category, content,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime, sys_language_uid, l10n_parent, l10n_diffsource, hidden'),
+		'1' => array('showitem' => 'title, content, --div--;Configuration, publish_date;;1, author, category, tags, related_posts, --div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime, sys_language_uid, l10n_parent, l10n_diffsource, hidden'),
 	),
 	'palettes' => array(
-		'1' => array('showitem' => ''),
+		'1' => array('showitem' => 'sticky'),
 	),
 	'columns' => array(
 		'sys_language_uid' => array(
@@ -59,6 +60,7 @@ $TCA['tx_blogger_domain_model_post'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
 			'config' => array(
 				'type' => 'check',
+				'default' => true,
 			),
 		),
 		'starttime' => array(
@@ -114,6 +116,14 @@ $TCA['tx_blogger_domain_model_post'] = array(
 				'default' => time()
 			),
 		),
+		'sticky' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:blogger/Resources/Private/Language/locallang_db.xml:tx_blogger_domain_model_post.sticky',
+			'config' => array(
+				'type' => 'check',
+				'default' => 0,
+			),
+		),
 		'author' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:blogger/Resources/Private/Language/locallang_db.xml:tx_blogger_domain_model_post.author',
@@ -123,7 +133,7 @@ $TCA['tx_blogger_domain_model_post'] = array(
 				'minitems' => 0,
 				'maxitems' => 1,
 				'items' => array(
-					array('','')
+					array('', '')
 				)
 			),
 		),
@@ -132,10 +142,20 @@ $TCA['tx_blogger_domain_model_post'] = array(
 			'label' => 'LLL:EXT:blogger/Resources/Private/Language/locallang_db.xml:tx_blogger_domain_model_post.category',
 			'config' => array(
 				'type' => 'select',
+				'renderMode' => 'tree',
 				'foreign_table' => 'tx_blogger_domain_model_category',
+				'foreign_table_where' => ' AND tx_blogger_domain_model_category.pid = ###CURRENT_PID### ORDER BY tx_blogger_domain_model_category.sorting',
+				'treeConfig' => array(
+					'parentField' => 'parent',
+					'appearance' => array(
+						'expandAll' => TRUE,
+						'showHeader' => TRUE,
+					),
+				),
+				'size' => 10,
+				'autoSizeMax' => 20,
 				'minitems' => 0,
-				'maxitems' => 100,
-				'size' => 5,
+				'maxitems' => 20,
 			),
 		),
 		'content' => array(
@@ -144,15 +164,39 @@ $TCA['tx_blogger_domain_model_post'] = array(
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tt_content',
-				'maxitems'      => 9999,
+				'maxitems' => 9999,
+				'multiple' => true,
 				'appearance' => array(
 					'collapse' => 0,
 					'levelLinksPosition' => 'top',
-					#'showSynchronizationLink' => 1,
-					#'showPossibleLocalizationRecords' => 1,
-					#'showAllLocalizationLink' => 1
+				#'showSynchronizationLink' => 1,
+				#'showPossibleLocalizationRecords' => 1,
+				#'showAllLocalizationLink' => 1
 				),
 			),
+		),
+		'related_posts' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:blogger/Resources/Private/Language/locallang_db.xml:tx_blogger_domain_model_post.related_posts',
+			'config' => array(
+				'type' => 'group',
+				'internal_type' => 'db',
+				'allowed' => 'tx_blogger_domain_model_post',
+				'multiple' => 0,
+				'foreign_table' => 'tx_blogger_domain_model_post',
+				'size' => 3,
+				'maxitems' => 99,
+				'wizards' => array(
+					'suggest' => array(    
+            			'type' => 'suggest',
+        			),
+				),
+			),
+		),
+		'tags' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:blogger/Resources/Private/Language/locallang_db.xml:tx_blogger_domain_model_post.content',
+			'config' => Tx_Tagger_Service_IntegrationService::getTagFieldConfiguration('tx_blogger_domain_model_post'),
 		),
 	),
 );

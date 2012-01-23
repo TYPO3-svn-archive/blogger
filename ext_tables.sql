@@ -5,12 +5,15 @@ CREATE TABLE tx_blogger_domain_model_post (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-
 	title varchar(255) DEFAULT '' NOT NULL,
 	publish_date int(11) DEFAULT '0' NOT NULL,
 	author int(11) unsigned DEFAULT '0',
-	category int(11) unsigned DEFAULT '0',
+	category varchar(255) DEFAULT '' NOT NULL,
 	content varchar(255) DEFAULT '' NOT NULL,
+	tags int(11) unsigned DEFAULT '0' NOT NULL,
+
+	sticky tinyint(4) unsigned DEFAULT '0' NOT NULL,
+	related_posts text NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -59,6 +62,7 @@ CREATE TABLE tx_blogger_domain_model_category (
 	hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	starttime int(11) unsigned DEFAULT '0' NOT NULL,
 	endtime int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting int(11) unsigned DEFAULT '0' NOT NULL,
 
 	t3ver_oid int(11) DEFAULT '0' NOT NULL,
 	t3ver_id int(11) DEFAULT '0' NOT NULL,

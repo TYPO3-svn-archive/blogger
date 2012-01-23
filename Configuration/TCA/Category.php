@@ -109,8 +109,9 @@ $TCA['tx_blogger_domain_model_category'] = array(
 			'config' => array(
 				'type' => 'select',
 				'renderMode' => 'tree',
+				'subType' => 'db',
 				'foreign_table' => 'tx_blogger_domain_model_category',
-				'foreign_table_where' => ' AND tx_blogger_domain_model_category.pid = ###CURRENT_PID###',
+				'foreign_table_where' => ' AND tx_blogger_domain_model_category.pid = ###CURRENT_PID### AND tx_blogger_domain_model_category.uid != ###THIS_UID### ORDER BY tx_blogger_domain_model_category.sorting',
 				'treeConfig' => array(
 					'parentField' => 'parent',
 					'appearance' => array(
@@ -119,6 +120,9 @@ $TCA['tx_blogger_domain_model_category'] = array(
 					),
 				),
 				'maxitems' => 1,
+				'size' => 10,
+				'autoSizeMax' => 20,
+				'minitems' => 0,
 			),
 		),
 	),

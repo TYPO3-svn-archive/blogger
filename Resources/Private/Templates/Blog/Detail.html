@@ -1,12 +1,30 @@
 <div class="blog detail">
 	<h1><f:link.action action="detail" arguments="{post: post}">{post.title}</f:link.action></h1>
 	<p class="meta">
-		<span class="author">{post.author.realName}</span>
+		<span class="author"><f:link.action arguments="{author:post.author}">{post.author.realName}</f:link.action></span>
 		<span class="date"><f:format.date>{post.publishDate}</f:format.date></span>
 	</p>
 	<f:for each="{post.content}" as="c">
 		<f:cObject typoscriptObjectPath="plugin.tx_blogger.contentRenderer" data="{c.uid}" />
 	</f:for>
-
+	<f:if condition="<f:count subject='{post.relatedPosts}' /> > 0">
+		<h2>Related Posts</h2>
+		<ul>
+			<f:for each="{post.relatedPosts}" as="relPost">
+				<li><f:link.action action="detail" arguments="{post: relPost}">{relPost.title}</f:link.action> (<f:format.date>{relPost.publishDate}</f:format.date>)</li>
+			</f:for>
+		</ul>
+	</f:if>
+	<f:if condition="<f:count subject='{post.category}' /> > 0">
+		<h2>Meta</h2>
+		<ul>
+			<f:for each="{post.category}" as="category">
+				<li><f:link.action arguments="{category:category}">{category.title}</f:link.action></li>
+			</f:for>
+		</ul>
+	</f:if>
+	<f:if condition="{comments}">
+		<f:render partial="Comments/{comments}" arguments="{post: post}" />
+	</f:if>
 	<f:link.action action="list">zurück</f:link.action>
 </div>

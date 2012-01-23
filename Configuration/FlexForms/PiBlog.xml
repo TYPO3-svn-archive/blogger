@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>Einstellungen</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.comments.type>
+						<TCEforms>
+							<label>Comments</label>
+							<onChange>reload</onChange>
+							<exclude>1</exclude>
+							<config>
+								<type>select</type>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<items>
+									<numIndex index="0" type="array">
+										<numIndex index="0">Disabled</numIndex>
+										<numIndex index="1">disabled</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">DISQUS</numIndex>
+										<numIndex index="1">disqus</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.comments.type>
+					<settings.comments.disqus.shorthandle>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>DISQUS Shorthandle:</label>
+							<displayCond>FIELD:settings.comments.type:=:disqus</displayCond>
+							<config>
+								<type>input</type>
+							</config>
+						</TCEforms>
+					</settings.comments.disqus.shorthandle>
+					<settings.overrideTitle>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>Use Post Title as Page Title:</label>
+							<config>
+								<type>check</type>
+								<default>0</default>
+							</config>
+						</TCEforms>
+					</settings.overrideTitle>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>

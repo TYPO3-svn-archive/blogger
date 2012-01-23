@@ -1,11 +1,21 @@
 <div class="blog list">
+	<f:if condition="<f:count subject='{filters}' /> > 0">
+		<h2>Filter: 
+			<f:for each="{filters}" as="filter" iteration="filterIterator">
+				{filter}<f:if condition="{filterIterator.isLast}"><f:then></f:then><f:else>, </f:else></f:if>
+			</f:for>
+		</h2>
+	</f:if>
 	<f:widget.paginate objects="{posts}" as="paginatedPosts" configuration="{itemsPerPage: 10, insertAbove: 1, insertBelow: 1}">
 		<f:for each="{paginatedPosts}" as="post">
 			<div class="item post-uid-{post.uid} cat-uid-{post.category.uid}">
 				<h1><f:link.action action="detail" arguments="{post: post}">{post.title}</f:link.action></h1>
 				<p class="meta">
-					<span class="author">{post.author.realName}</span>
-					<span class="date"><f:format.date>{post.publishDate}</f:format.date></span>
+					<span class="author"><f:link.action arguments="{author:post.author}">{post.author.realName}</f:link.action></span>
+					<span class="date">
+						<f:format.date>{post.publishDate}</f:format.date>
+						<f:if condition="{post.sticky}"> (sticky)</f:if>
+					</span>
 				</p>
 
 				<f:for each="{post.contentPreview}" as="c">

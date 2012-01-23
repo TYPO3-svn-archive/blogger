@@ -11,7 +11,7 @@
 ########################################################################
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'Blog',
+	'title' => 'Blogger',
 	'description' => 'Komplex but easy blog system with extbase / fluid base',
 	'category' => 'plugin',
 	'author' => 'Tim Lochmüller',
@@ -27,7 +27,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-	'version' => '',
+	'version' => '0.0.1',
 	'constraints' => array(
 		'depends' => array(
 			'cms' => '',

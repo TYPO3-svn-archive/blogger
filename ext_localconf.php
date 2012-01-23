@@ -15,4 +15,12 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	)
 );
 
+Tx_Extbase_Utility_Extension::configurePlugin(
+	$_EXTKEY,
+	'piBlogWidget',
+	array(
+		'Widget' => 'list,calendar'
+	)
+);
+
 ?>

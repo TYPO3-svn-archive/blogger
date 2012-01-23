@@ -9,9 +9,11 @@
 			<label index="tx_blogger_domain_model_post">Post</label>
 			<label index="tx_blogger_domain_model_post.title">Title</label>
 			<label index="tx_blogger_domain_model_post.publish_date">Publish Date</label>
+			<label index="tx_blogger_domain_model_post.sticky">Sticky</label>
 			<label index="tx_blogger_domain_model_post.author">Author</label>
 			<label index="tx_blogger_domain_model_post.category">Category</label>
 			<label index="tx_blogger_domain_model_post.content">Content</label>
+			<label index="tx_blogger_domain_model_post.related_posts">Related Posts</label>
 			<label index="tx_blogger_domain_model_category">Category</label>
 			<label index="tx_blogger_domain_model_category.title">Title</label>
 			<label index="tx_blogger_domain_model_category.parent">Parent</label>
